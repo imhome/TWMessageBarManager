@@ -151,7 +151,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
     dispatch_once(&pred, ^{
         instance = [[self alloc] init];
     });
-	return instance;
+    return instance;
 }
 
 #pragma mark - Static
@@ -452,8 +452,8 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
 
 + (void)initialize
 {
-	if (self == [TWMessageView class])
-	{
+    if (self == [TWMessageView class])
+    {
         // Fonts
         kTWMessageViewTitleFont = [UIFont boldSystemFontOfSize:16.0];
         kTWMessageViewDescriptionFont = [UIFont systemFontOfSize:14.0];
@@ -461,7 +461,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
         // Colors
         kTWMessageViewTitleColor = [UIColor colorWithWhite:1.0 alpha:1.0];
         kTWMessageViewDescriptionColor = [UIColor colorWithWhite:1.0 alpha:1.0];
-	}
+    }
 }
 
 - (id)initWithTitle:(NSString *)title description:(NSString *)description type:(TWMessageBarMessageType)type
@@ -532,17 +532,18 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
         CGFloat yOffset = kTWMessageViewBarPadding + [self statusBarOffset];
 
         // icon
-        CGContextSaveGState(context);
-        {
-            if ([styleSheet respondsToSelector:@selector(iconImageForMessageType:)])
-            {
-                [[styleSheet iconImageForMessageType:self.messageType] drawInRect:CGRectMake(xOffset, yOffset, kTWMessageViewIconSize, kTWMessageViewIconSize)];
-            }
-        }
-        CGContextRestoreGState(context);
+        // CGContextSaveGState(context);
+        // {
+        //     if ([styleSheet respondsToSelector:@selector(iconImageForMessageType:)])
+        //     {
+        //         [[styleSheet iconImageForMessageType:self.messageType] drawInRect:CGRectMake(xOffset, yOffset, kTWMessageViewIconSize, kTWMessageViewIconSize)];
+        //     }
+        // }
+        // CGContextRestoreGState(context);
 
         yOffset -= kTWMessageViewTextOffset;
-        xOffset += kTWMessageViewIconSize + kTWMessageViewBarPadding;
+        xOffset += kTWMessageViewBarPadding;
+        // xOffset += kTWMessageViewIconSize + kTWMessageViewBarPadding;
 
         CGSize titleLabelSize = [self titleSize];
         CGSize descriptionLabelSize = [self descriptionSize];
@@ -555,10 +556,10 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
         if ([[UIDevice currentDevice] isRunningiOS7OrLater])
         {
             NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-            paragraphStyle.alignment = NSTextAlignmentLeft;
+            paragraphStyle.alignment = NSTextAlignmentCenter;
 
             [[self titleColor] set];
-            [self.titleString drawWithRect:CGRectMake(xOffset, yOffset, titleLabelSize.width, titleLabelSize.height)
+            [self.titleString drawWithRect:CGRectMake(xOffset, yOffset, self.width-xOffset*2, titleLabelSize.height)
                                    options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingTruncatesLastVisibleLine
                                 attributes:@{NSFontAttributeName:[self titleFont], NSForegroundColorAttributeName:[self titleColor], NSParagraphStyleAttributeName:paragraphStyle}
                                    context:nil];
@@ -566,7 +567,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
             yOffset += titleLabelSize.height;
 
             [[self descriptionColor] set];
-            [self.descriptionString drawWithRect:CGRectMake(xOffset, yOffset, descriptionLabelSize.width, descriptionLabelSize.height)
+            [self.descriptionString drawWithRect:CGRectMake(xOffset, yOffset, self.width-xOffset*2, descriptionLabelSize.height)
                                          options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingTruncatesLastVisibleLine
                                       attributes:@{NSFontAttributeName:[self descriptionFont], NSForegroundColorAttributeName:[self descriptionColor], NSParagraphStyleAttributeName:paragraphStyle}
                                          context:nil];
@@ -576,7 +577,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
             [[self titleColor] set];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            [self.titleString drawInRect:CGRectMake(xOffset, yOffset, titleLabelSize.width, titleLabelSize.height) withFont:[self titleFont] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft];
+            [self.titleString drawInRect:CGRectMake(xOffset, yOffset, self.width-xOffset*2, titleLabelSize.height) withFont:[self titleFont] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
 #pragma clang diagnostic pop
 
             yOffset += titleLabelSize.height;
@@ -584,7 +585,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
             [[self descriptionColor] set];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            [self.descriptionString drawInRect:CGRectMake(xOffset, yOffset, descriptionLabelSize.width, descriptionLabelSize.height) withFont:[self descriptionFont] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft];
+            [self.descriptionString drawInRect:CGRectMake(xOffset, yOffset, self.width-xOffset*2, descriptionLabelSize.height) withFont:[self descriptionFont] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
 #pragma clang diagnostic pop
         }
     }
@@ -748,8 +749,8 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
 
 + (void)initialize
 {
-	if (self == [TWDefaultMessageBarStyleSheet class])
-	{
+    if (self == [TWDefaultMessageBarStyleSheet class])
+    {
         // Colors (background)
         kTWDefaultMessageBarStyleSheetErrorBackgroundColor = [UIColor colorWithRed:1.0 green:0.611 blue:0.0 alpha:kTWMessageBarStyleSheetMessageBarAlpha]; // orange
         kTWDefaultMessageBarStyleSheetSuccessBackgroundColor = [UIColor colorWithRed:0.0f green:0.831f blue:0.176f alpha:kTWMessageBarStyleSheetMessageBarAlpha]; // green
