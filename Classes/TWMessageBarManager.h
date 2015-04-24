@@ -13,6 +13,7 @@
  */
 typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
     TWMessageBarMessageTypeError,
+    TWMessageBarMessageTypeWarning,
     TWMessageBarMessageTypeSuccess,
     TWMessageBarMessageTypeInfo
 };
@@ -22,7 +23,7 @@ typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
 /**
  *  Background color of message view.
  *
- *  @param type A MessageBarMessageType (error, information, success, etc).
+ *  @param type A MessageBarMessageType (error, warning, information, success, etc).
  *
  *  @return UIColor istance representing the message view's background color.
  */
@@ -31,7 +32,7 @@ typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
 /**
  *  Bottom stroke color of message view.
  *
- *  @param type A MessageBarMessageType (error, information, success, etc).
+ *  @param type A MessageBarMessageType (error, warning, information, success, etc).
  *
  *  @return UIColor istance representing the message view's bottom stroke color.
  */
@@ -40,7 +41,7 @@ typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
 /**
  *  Icon image of the message view.
  *
- *  @param type A MessageBarMessageType (error, information, success, etc).
+ *  @param type A MessageBarMessageType (error, warning, information, success, etc).
  *
  *  @return UIImage istance representing the message view's icon.
  */
@@ -53,7 +54,7 @@ typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
  *
  *  Default: 16pt bold
  *
- *  @param type A MessageBarMessageType (error, information, success, etc).
+ *  @param type A MessageBarMessageType (error, warning, information, success, etc).
  *
  *  @return UIFont instance representing the title font.
  */
@@ -64,7 +65,7 @@ typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
  *
  *  Default: 14pt regular
  *
- *  @param type A MessageBarMessageType (error, information, success, etc).
+ *  @param type A MessageBarMessageType (error, warning, information, success, etc).
  *
  *  @return UIFont instance representing the description font.
  */
@@ -75,7 +76,7 @@ typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
  *
  *  Default: white
  *
- *  @param type A MessageBarMessageType (error, information, success, etc).
+ *  @param type A MessageBarMessageType (error, warning, information, success, etc).
  *
  *  @return UIColor instance representing the title color.
  */
@@ -86,7 +87,7 @@ typedef NS_ENUM(NSInteger, TWMessageBarMessageType) {
  *
  *  Default: white
  *
- *  @param type A MessageBarMessageType (error, information, success, etc).
+ *  @param type A MessageBarMessageType (error, warning, information, success, etc).
  *
  *  @return UIColor instance representing the description color.
  */
